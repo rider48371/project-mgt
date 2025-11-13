@@ -2,16 +2,17 @@ import nodemailer from 'nodemailer'
 
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.google.com",
+    host: "smtp-relay.brevo.com",
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-        user: process.env.SENDER_EMAIL,
-        pass: process.env.WORKSPACE_APP_PASSWORD,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
     },
 });
 
 
+// Wrap in an async IIFE so we can use await.
 const sendEmail = async ({to, subject, body}) => {
     const response = await transporter.sendMail({
         from: process.env.SENDER_EMAIL,
