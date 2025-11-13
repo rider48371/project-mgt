@@ -1,8 +1,9 @@
+import dotenv from 'dotenv'
+dotenv.config();
 import { Inngest } from "inngest";
 import prisma from "../configs/prisma.js";
 import sendEmail from "../configs/nodemailer.js";
-import dotenv from 'dotenv'
-dotenv.config();
+
 
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "velocity-designs-project-mgt" });
