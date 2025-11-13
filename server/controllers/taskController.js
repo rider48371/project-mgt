@@ -96,7 +96,7 @@ export const deleteTask = async (req, res) => {
     try {
         const {userId} = await req.auth();
         const {tasksIds} = req.body
-        const tasks = await prisma.tasks.findMany({
+        const tasks = await prisma.task.findMany({
             where: {id: {in: tasksIds}}
         })
 
@@ -116,7 +116,7 @@ export const deleteTask = async (req, res) => {
         }
 
         await prisma.task.deleteMany({
-            where: {id: {in: taskIds}}
+            where: {id: {in: tasksIds}}
         })
 
         res.json({message: "Task deleted successfully"})
